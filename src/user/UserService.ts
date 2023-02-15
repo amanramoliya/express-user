@@ -21,3 +21,10 @@ export function saveUser(userData: { email: string; password: string }) {
     email: userData.email,
   };
 }
+
+export function getAllUsers() {
+  const result = users.map((user) => {
+    return { id: user.id, email: user.email };
+  });
+  return result;
+}
