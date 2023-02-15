@@ -1,24 +1,17 @@
 import { Router } from "express";
 import { authenticate } from "../core/authMiddleware";
-import { deleteById, getAllUsers, getById, saveUser } from "./UserService";
+import { IRequest } from "./../type";
+import { deleteById, getById } from "./UserService";
 
 const userRouter = Router();
 
 userRouter.use(authenticate);
 
-userRouter.post("/user", (req, res) => {
-  res.send(saveUser(req.body));
+userRouter.get("/user", (req: IRequest, res) => {
+  res.send(getById(req.user.id));
 });
 
-userRouter.get("/user", (req, res) => {
-  res.send(getAllUsers());
-});
-
-userRouter.get("/user/:id", (req, res) => {
-  res.send(getById(req.params.id));
-});
-
-userRouter.delete("/user/:id", (req, res) => {
+userRouter.delete("/user", (req: IRequest, res) => {
   deleteById(req.params.id);
   res.send();
 });
