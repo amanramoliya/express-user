@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, getById, saveUser } from "./UserService";
+import { deleteById, getAllUsers, getById, saveUser } from "./UserService";
 
 const userRouter = Router();
 
@@ -13,6 +13,11 @@ userRouter.get("/user", (req, res) => {
 
 userRouter.get("/user/:id", (req, res) => {
   res.send(getById(req.params.id));
+});
+
+userRouter.delete("/user/:id", (req, res) => {
+  deleteById(req.params.id);
+  res.send();
 });
 
 export { userRouter };

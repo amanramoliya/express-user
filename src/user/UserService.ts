@@ -39,3 +39,9 @@ export function getById(id: string) {
       }
     : { msg: "User Not Found" };
 }
+
+export function deleteById(id: string) {
+  const resultArray = getById(id);
+  const indexOfUser = users.indexOf(resultArray[0]);
+  users.splice(indexOfUser, 1);
+}
