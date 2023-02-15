@@ -1,14 +1,7 @@
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { v4 as uuid } from "uuid";
-
-type User = {
-  id: string;
-  email: string;
-  password: string;
-};
-
-const users: User[] = [];
+import { users } from "../core/userStore";
 
 type authData = {
   email: string;
@@ -44,6 +37,7 @@ export async function signInUser(signInData: authData) {
     throw new Error("Invalid Password");
   }
 
+  const payload = { id: user.id, email: email };
   const accessToken = sign(password, "secret");
   console.log(accessToken);
   return accessToken;

@@ -1,12 +1,6 @@
 import { v4 as uuid } from "uuid";
+import { users } from "../core/userStore";
 
-type User = {
-  id: string;
-  email: string;
-  password: string;
-};
-
-const users: User[] = [];
 export function saveUser(userData: { email: string; password: string }) {
   const id = uuid();
 
