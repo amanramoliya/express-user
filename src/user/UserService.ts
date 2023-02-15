@@ -28,3 +28,14 @@ export function getAllUsers() {
   });
   return result;
 }
+
+export function getById(id: string) {
+  const resultUser = users.filter((u) => u.id == id);
+
+  return resultUser.length !== 0
+    ? {
+        id: resultUser[0].id,
+        email: resultUser[0].email,
+      }
+    : { msg: "User Not Found" };
+}
