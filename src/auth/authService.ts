@@ -38,7 +38,7 @@ export async function signInUser(signInData: authData) {
   }
 
   const payload = { id: user.id, email: email };
-  const accessToken = sign(password, "secret");
+  const accessToken = sign(payload, "secret");
   console.log(accessToken);
   return accessToken;
 }

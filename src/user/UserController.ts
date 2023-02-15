@@ -1,7 +1,10 @@
 import { Router } from "express";
+import { authenticate } from "../core/authMiddleware";
 import { deleteById, getAllUsers, getById, saveUser } from "./UserService";
 
 const userRouter = Router();
+
+userRouter.use(authenticate);
 
 userRouter.post("/user", (req, res) => {
   res.send(saveUser(req.body));
